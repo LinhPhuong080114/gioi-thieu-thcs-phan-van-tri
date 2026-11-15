@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> GIỚI THIỆU VỀ TRƯỜNG EM</title>
+    <title>GIỚI THIỆU VỀ TRƯỜNG EM - THCS PHAN VĂN TRỊ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             --shadow: rgba(37, 156, 87, 0.15);
         }
 
-[data-theme="dark"] {
+        [data-theme="dark"] {
             --bg: #0d2012;
             --mint: #52c480;
             --mint-dark: #2f8551;
@@ -149,7 +149,7 @@
             transform: translateY(-2px);
         }
 
-        /* SIDEBAR Dá»ŒC BÃŠN TRÃI */
+        /* SIDEBAR DỌC BÊN TRÁI */
         .sidebar {
             position: fixed;
             top: 0;
@@ -296,7 +296,7 @@
             text-align: center;
         }
 
-        /* KHUNG áº¢NH GLASSMORPHISM */
+        /* KHUNG ẢNH GLASSMORPHISM */
         .glass-img-wrapper {
             position: relative;
             border-radius: 16px;
@@ -456,6 +456,10 @@
             margin-top: 15px;
             animation: slideDown 0.4s ease-out;
         }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         #ticketBody {
             white-space: pre-wrap;
             word-wrap: break-word;
@@ -501,7 +505,7 @@
             animation: popIn 0.3s ease;
         }
 
-        /* FOOTER NGUá»’N TÆ¯ LIá»†U */
+        /* FOOTER NGUỒN TƯ LIỆU */
         .footer-card {
             background: var(--card);
             border: 2px solid var(--mint);
@@ -599,15 +603,16 @@
 </head>
 <body>
 
-    <!-- CON TRá»Ž CHUá»˜T NÄ‚NG Äá»˜NG -->
+    <!-- CON TRỎ CHUỘT NĂNG ĐỘNG -->
     <div class="cursor"></div>
 
-    <!-- OVERLAY QUIZ CÃ‚U Há»ŽI -->
+    <!-- OVERLAY QUIZ CÂU HỎI -->
     <div id="quiz-overlay">
         <div class="quiz-card">
             <div class="quiz-title">🏫 CHÀO MỪNG BẠN ĐẾN VỚI THCS PHAN VĂN TRỊ 🏫</div>
-            <div class="quiz-question">Thử thách nho nhỏ trước khi tham quan nha:
-Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào của TP.HCM không nè?</b></div>
+            <div class="quiz-question">Thử thách nho nhỏ trước khi tham quan nha:<br>
+                <b>Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào của TP.HCM không nè?</b>
+            </div>
             <button class="quiz-btn" onclick="answerQuiz(false)">A. Phường Gò Vấp</button>
             <button class="quiz-btn" onclick="answerQuiz(true)">B. Phường Hạnh Thông</button>
             <button class="quiz-btn" onclick="answerQuiz(false)">C. Phường Thông Tây Hội</button>
@@ -615,64 +620,64 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
         </div>
     </div>
 
-    <!-- SIDEBAR Dá»ŒC BÃŠN TRÃI -->
+    <!-- SIDEBAR DỌC BÊN TRÁI -->
     <div class="sidebar">
-        <div class="sidebar-toggle-hint">MENU âž”</div>
+        <div class="sidebar-toggle-hint">MENU ➔</div>
         <div class="logo-container">
-            <img src="logo-truong.jpg" alt="Logo TrÆ°á»ng" class="school-logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
+            <img src="logo-truong.jpg" alt="Logo Trường" class="school-logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
         </div>
         <div class="sidebar-nav">
-            <a href="#home" class="nav-link">ðŸ  Trang chá»§</a>
-            <a href="#infor" class="nav-link">ðŸ« Giá»›i thiá»‡u & Khá»‘i</a>
-            <a href="#activities" class="nav-link">ðŸŽ—ï¸ Hoáº¡t Ä‘á»™ng Äá»™i</a>
-            <a href="#member" class="nav-link">ðŸ‘¥ NhÃ³m lÃ m bÃ¡o</a>
-            <a href="#guestbook" class="nav-link">ðŸ¾ Bá»©c tÆ°á»ng lÆ°u bÃºt</a>
+            <a href="#home" class="nav-link">🏠 Trang chủ</a>
+            <a href="#infor" class="nav-link">🏫 Giới thiệu & Khối</a>
+            <a href="#activities" class="nav-link">🎗️ Hoạt động Đội</a>
+            <a href="#member" class="nav-link">👥 Nhóm làm báo</a>
+            <a href="#guestbook" class="nav-link">🐾 Bức tường lưu bút</a>
         </div>
     </div>
 
     <!-- MAIN CONTAINER -->
     <div class="main-wrapper" id="home">
         
-        <!-- THANH HEADER TOP NGANG HÃ€NG -->
+        <!-- THANH HEADER TOP NGANG HÀNG -->
         <div class="top-header-bar">
             <div class="school-title-badge">
-                <span>ðŸ«</span> TRÆ¯á»œNG THCS PHAN VÄ‚N TRá»Š
+                <span>🏫</span> TRƯỜNG THCS PHAN VĂN TRỊ
             </div>
-            <button class="top-btn" id="theme-toggle">ðŸŒ“ Mode SÃ¡ng/Tá»‘i</button>
+            <button class="top-btn" id="theme-toggle">🌓 Mode Sáng/Tối</button>
         </div>
 
-        <!-- BANNER CHÃNH -->
+        <!-- BANNER CHÍNH -->
         <div class="banner-card">
             <div class="banner-slogan-box">
-                "Tri thá»©c dáº«n lá»‘i â€“ Tá»± tin bá»©t phÃ¡ â€“ Vá»¯ng bÆ°á»›c tÆ°Æ¡ng lai"
+                "Tri thức dẫn lối – Tự tin bứt phá – Vững bước tương lai"
             </div>
             <div class="glass-img-wrapper">
-                <img src="banner-truong.jpg" alt="Banner TrÆ°á»ng" onerror="this.src='https://via.placeholder.com/800x250?text=BANNER+TRUONG'">
+                <img src="banner-truong.jpg" alt="Banner Trường" onerror="this.src='https://via.placeholder.com/800x250?text=BANNER+TRUONG'">
             </div>
         </div>
 
-        <!-- Má»¤C 1: GIá»šI THIá»†U TRÆ¯á»œNG & CÆ  Sá»ž Váº¬T CHáº¤T -->
-        <div class="section-title" id="infor">ðŸ›ï¸ GIá»šI THIá»†U TRÆ¯á»œNG & CÆ  Sá»ž Váº¬T CHáº¤T</div>
+        <!-- MỤC 1: GIỚI THIỆU TRƯỜNG & CƠ SỞ VẬT CHẤT -->
+        <div class="section-title" id="infor">🏛️ GIỚI THIỆU TRƯỜNG & CƠ SỞ VẬT CHẤT</div>
         <div class="section-body">
             <p style="line-height: 1.7; margin-bottom: 15px; font-size: 14.5px;">
-                TrÆ°á»ng THCS Phan VÄƒn Trá»‹ Ä‘Æ°á»£c thÃ nh láº­p theo Quyáº¿t Ä‘á»‹nh sá»‘ 3270/QÄ-UBND ngÃ y 26/05/2016 cá»§a UBND quáº­n GÃ² Váº¥p, tá»a láº¡c táº¡i Ä‘á»‹a chá»‰ <b>468/2/2 Ä‘Æ°á»ng Phan VÄƒn Trá»‹, P.7, Q. GÃ² Váº¥p</b>. TrÆ°á»ng cÃ³ tá»•ng diá»‡n tÃ­ch sÃ n xÃ¢y má»›i trÃªn <b>6.700mÂ²</b>, vá»›i tá»•ng má»©c Ä‘áº§u tÆ° hÆ¡n <b>76 tá»· Ä‘á»“ng</b>, Ä‘á»“ng bá»™ chuáº©n quá»‘c gia.
+                Trường THCS Phan Văn Trị được thành lập theo Quyết định số 3270/QĐ-UBND ngày 26/05/2016 của UBND quận Gò Vấp, tọa lạc tại địa chỉ <b>468/2/2 đường Phan Văn Trị, P.7, Q. Gò Vấp</b> (nay thuộc Phường Hạnh Thông, TP.HCM). Trường có tổng diện tích sàn xây mới trên <b>6.700m²</b>, với tổng mức đầu tư hơn <b>76 tỷ đồng</b>, đồng bộ chuẩn quốc gia.
             </p>
 
             <div class="glass-img-wrapper">
-                <img src="anh-gioi-thu-truong.jpg" alt="áº¢nh trÆ°á»ng" onerror="this.src='https://via.placeholder.com/800x220?text=ANH+GIOI+THIEU+TRUONG'">
+                <img src="anh-gioi-thu-truong.jpg" alt="Ảnh trường" onerror="this.src='https://via.placeholder.com/800x220?text=ANH+GIOI+THIEU+TRUONG'">
             </div>
 
-            <h3 style="font-size: 16px; color: var(--mint-dark); margin-top: 20px; text-align: center;">ðŸ¢ 3 KHá»I CHá»¨C NÄ‚NG CHÃNH (Cháº¡m/RÃª chuá»™t Ä‘á»ƒ xem):</h3>
+            <h3 style="font-size: 16px; color: var(--mint-dark); margin-top: 20px; text-align: center;">🏢 3 KHỐI CHỨC NĂNG CHÍNH (Chạm/Rê chuột để xem):</h3>
             
             <div class="grid-3">
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ›ï¸ KHá»I A</h4>
-                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khá»‘i Há»c Táº­p & Quáº£n Trá»‹</p>
+                            <h4 style="color: var(--mint); font-size: 18px;">🏛️ KHỐI A</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khối Học Tập & Quản Trị</p>
                         </div>
                         <div class="flip-card-back">
-                            <p style="font-size: 13.5px; line-height: 1.5;">Phá»¥c vá»¥ cÃ´ng tÃ¡c quáº£n trá»‹ nhÃ  trÆ°á»ng, ban giÃ¡m hiá»‡u, vÄƒn phÃ²ng vÃ  cÃ¡c phÃ²ng há»p chá»©c nÄƒng chuyÃªn mÃ´n.</p>
+                            <p style="font-size: 13.5px; line-height: 1.5;">Phục vụ công tác quản trị nhà trường, ban giám hiệu, văn phòng và các phòng họp chức năng chuyên môn.</p>
                         </div>
                     </div>
                 </div>
@@ -680,11 +685,11 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ“š KHá»I B</h4>
-                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khá»‘i PhÃ²ng Há»c</p>
+                            <h4 style="color: var(--mint); font-size: 18px;">📚 KHỐI B</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khối Phòng Học</p>
                         </div>
                         <div class="flip-card-back">
-                            <p style="font-size: 13.5px; line-height: 1.5;">Bao gá»“m 22 phÃ²ng há»c chuáº©n hÃ³a hiá»‡n Ä‘áº¡i cÃ¹ng Ä‘áº§y Ä‘á»§ cÃ¡c phÃ²ng bá»™ mÃ´n trang thiáº¿t bá»‹ tiÃªn tiáº¿n.</p>
+                            <p style="font-size: 13.5px; line-height: 1.5;">Bao gồm 22 phòng học chuẩn hóa hiện đại cùng đầy đủ các phòng bộ môn trang thiết bị tiên tiến.</p>
                         </div>
                     </div>
                 </div>
@@ -692,32 +697,32 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ€ KHá»I C</h4>
-                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Sinh Hoáº¡t & NhÃ  Äa NÄƒng</p>
+                            <h4 style="color: var(--mint); font-size: 18px;">🏀 KHỐI C</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Sinh Hoạt & Nhà Đa Năng</p>
                         </div>
                         <div class="flip-card-back">
-                            <p style="font-size: 13.5px; line-height: 1.5;">Phá»¥c vá»¥ khu thá»ƒ dá»¥c thá»ƒ thao Ä‘a nÄƒng káº¿t há»£p há»™i trÆ°á»ng, phÃ²ng truyá»n thá»‘ng & chÄƒm sÃ³c sá»©c khá»e y táº¿.</p>
+                            <p style="font-size: 13.5px; line-height: 1.5;">Phục vụ khu thể dục thể thao đa năng kết hợp hội trường, phòng truyền thống & chăm sóc sức khỏe y tế.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Má»¤C 2: HOáº T Äá»˜NG Äá»˜I & VIDEO Táº¢I LÃŠN -->
-        <div class="section-title" id="activities">ðŸŽ—ï¸ BÃ€I ÄÄ‚NG HOáº T Äá»˜NG Äá»˜I & PHONG TRÃ€O</div>
+        <!-- MỤC 2: HOẠT ĐỘNG ĐỘI & VIDEO TẢI LÊN -->
+        <div class="section-title" id="activities">🎗️ BÀI ĐĂNG HOẠT ĐỘNG ĐỘI & PHONG TRÀO</div>
         <div class="section-body">
-            <p style="font-size: 14px; margin-bottom: 10px; text-align: center;">CÃ¹ng nhÃ¬n láº¡i nhá»¯ng khoáº£nh kháº¯c hoáº¡t Ä‘á»™ng sÃ´i ná»•i vÃ  Ä‘áº§y Ã½ nghÄ©a cá»§a LiÃªn Ä‘á»™i TrÆ°á»ng THCS Phan VÄƒn Trá»‹:</p>
+            <p style="font-size: 14px; margin-bottom: 10px; text-align: center;">Cùng nhìn lại những khoảnh khắc hoạt động sôi nổi và đầy ý nghĩa của Liên đội Trường THCS Phan Văn Trị:</p>
             
             <div class="video-container">
                 <video controls>
                     <source src="hoat-dong-doi.mp4" type="video/mp4">
-                    TrÃ¬nh duyá»‡t cá»§a báº¡n khÃ´ng há»— trá»£ tháº» video.
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
             </div>
         </div>
 
-        <!-- Má»¤C 3: NHÃ“M THá»°C HIá»†N BÃO -->
-        <div class="section-title" id="member">ðŸ‘¥ NHÃ“M THá»°C HIá»†N BÃO (4 THÃ€NH VIÃŠN)</div>
+        <!-- MỤC 3: NHÓM THỰC HIỆN BÁO -->
+        <div class="section-title" id="member">👥 NHÓM THỰC HIỆN BÁO (4 THÀNH VIÊN)</div>
         <div class="section-body">
             <div class="grid-4">
                 <div class="member-card">
@@ -743,56 +748,56 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
             </div>
         </div>
 
-        <!-- Má»¤C 5: Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢ -->
-        <div class="section-title" id="guestbook">Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢ Äá»ŒC BÃO</div>
+        <!-- MỤC 5: BỨC TƯỜNG LƯU BÚT ĐỘC GIẢ -->
+        <div class="section-title" id="guestbook">🐾 BỨC TƯỜNG LƯU BÚT ĐỘC GIẢ ĐỌC BÁO</div>
         <div class="section-body" style="text-align: center;">
-            <p style="font-size: 13.5px; margin-bottom: 12px;">ÄÃ£ quÃ©t mÃ£ QR ghÃ© thÄƒm web, hÃ£y Ä‘á»ƒ láº¡i dáº¥u áº¥n kÃ­ tÃªn cá»§a báº¡n nhÃ©!</p>
+            <p style="font-size: 13.5px; margin-bottom: 12px;">Đã quét mã QR ghé thăm web, hãy để lại dấu ấn kí tên của bạn nhé!</p>
             
             <div class="guestbook-input">
-                <input type="text" id="visitorName" placeholder="Nháº­p tÃªn cá»§a báº¡n...">
-                <button class="top-btn" onclick="addSignature()">KÃ½ TÃªn âœï¸</button>
+                <input type="text" id="visitorName" placeholder="Nhập tên của bạn...">
+                <button class="top-btn" onclick="addSignature()">Ký Tên ✍️</button>
             </div>
 
             <div id="guestbookWall" class="guestbook-wall"></div>
         </div>
 
-        <!-- Má»¤C FOOTER CHÃ‚N TRANG ÄÃ“NG KHUNG NGUá»’N TÆ¯ LIá»†U -->
+        <!-- MỤC FOOTER CHÂN TRANG ĐÓNG KHUNG NGUỒN TƯ LIỆU -->
         <div class="footer-card">
             <p style="font-weight: 600; color: var(--mint-dark); font-size: 14px;">
-                ðŸ“· Nguá»“n hÃ¬nh áº£nh & ná»™i dung: TÆ° liá»‡u LiÃªn Ä‘á»™i TrÆ°á»ng THCS Phan VÄƒn Trá»‹
+                📷 Nguồn hình ảnh & nội dung: Tư liệu Liên đội Trường THCS Phan Văn Trị
             </p>
             <p style="font-style: italic; margin-top: 5px; color: var(--text);">
-                "THCS Phan VÄƒn Trá»‹ â€“ Vá»¯ng bÆ°á»›c tri thá»©c, cháº¯p cÃ¡nh Æ°á»›c mÆ¡."
+                "THCS Phan Văn Trị – Vững bước tri thức, chắp cánh ước mơ."
             </p>
         </div>
 
     </div>
 
-    <!-- TÆ¯Æ NG TÃC LÆ  Lá»¬NG GÃ“C DÆ¯á»šI -->
-    <a href="https://forms.gle/5LDYGjLYD2qnmrZV9" target="_blank" class="floating-letter-left" title="Gá»­i thÆ° gÃ³p Ã½ qua Form Google">
-        âœ‰ï¸
+    <!-- TƯƠNG TÁC LƠ LỬNG GÓC DƯỚI -->
+    <a href="https://forms.gle/5LDYGjLYD2qnmrZV9" target="_blank" class="floating-letter-left" title="Gửi thư góp ý qua Form Google">
+        ✉️
     </a>
 
     <div class="floating-mascot-right" onclick="clickMascot()">
         <div class="mascot-bubble" id="mascotTalk">
-            ChÃ o báº¡n! ChÃºng em xin kÃ­nh chÃºc báº¡n má»™t ngÃ y vui váº»! ðŸŽ“âœ¨
+            Chào bạn! Chúng em xin kính chúc bạn một ngày vui vẻ! 🎓✨
         </div>
         <img src="mascot-students.png" class="mascot-img" id="mascotImg" onerror="this.src='https://via.placeholder.com/75?text=MASCOT'">
     </div>
 
     <script>
-        // Xá»¬ LÃ OVERLAY QUIZ
+        // XỬ LÝ OVERLAY QUIZ
         function answerQuiz(isCorrect) {
             const errorEl = document.getElementById('quiz-error');
             if (isCorrect) {
                 document.getElementById('quiz-overlay').style.display = 'none';
             } else {
-                errorEl.innerText = "Æ  kÃ¬a, chÆ°a chÃ­nh xÃ¡c rá»“i báº¡n Æ¡i! Thá»­ láº¡i cÃ¢u tráº£ lá»i Ä‘Ãºng nha ðŸ˜…";
+                errorEl.innerText = "Ơ kìa, chưa chính xác rồi bạn ơi! Thử lại câu trả lời đúng nha 😅";
                 setTimeout(() => { errorEl.innerText = ""; }, 2500);
             }
         }
 
-        // CHUYá»‚N Äá»”I MODE SÃNG / Tá»I
+        // CHUYỂN ĐỔI MODE SÁNG / TỐI
         document.getElementById('theme-toggle').addEventListener('click', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
@@ -812,24 +817,24 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
             el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovered'));
         });
 
-        // Lá»œI CHÃšC DÃ€NH CHO CHA Máº¸ VÃ€ THáº¦Y CÃ”
+        // LỜI CHÚC DÀNH CHO CHA MẸ VÀ THẦY CÔ
         const parentWishes = [
-            "CÃ´ng Æ¡n sinh thÃ nh cá»§a Cha, sá»± chÄƒm sÃ³c dá»‹u dÃ ng cá»§a Máº¹ lÃ  suá»‘i nguá»“n yÃªu thÆ°Æ¡ng vÃ´ giÃ¡. ChÃºc Cha Máº¹ luÃ´n máº¡nh khá»e, bÃ¬nh an!",
-            "Cáº£m Æ¡n Cha Máº¹ Ä‘Ã£ luÃ´n lÃ  tá»±a sÆ¡n vá»¯ng cháº¯c, bao dung vÃ  nÃ¢ng Ä‘á»¡ tá»«ng bÆ°á»›c trÆ°á»Ÿng thÃ nh cá»§a con.",
-            "ChÃºc gia Ä‘Ã¬nh mÃ¬nh luÃ´n trÃ n ngáº­p tiáº¿ng cÆ°á»i, Cha Máº¹ luÃ´n dá»“i dÃ o sá»©c khá»e vÃ  háº¡nh phÃºc bÃªn cÃ¡c con!",
-            "Con cáº§u chÃºc Cha Máº¹ má»—i ngÃ y trÃ´i qua Ä‘á»u an nhiÃªn, nhiá»u niá»m vui vÃ  mÃ£i lÃ  mÃ¡i áº¥m bÃ¬nh yÃªn nháº¥t cá»§a con.",
-            "TÃ¬nh yÃªu cá»§a Cha Máº¹ lÃ  mÃ³n quÃ  tuyá»‡t vá»i nháº¥t Ä‘á»i con. KÃ­nh chÃºc Cha Máº¹ luÃ´n bÃ¬nh an vÃ  vui khá»e má»—i ngÃ y!"
+            "Công ơn sinh thành của Cha, sự chăm sóc dịu dàng của Mẹ là suối nguồn yêu thương vô giá. Chúc Cha Mẹ luôn mạnh khỏe, bình an!",
+            "Cảm ơn Cha Mẹ đã luôn là tựa sơn vững chắc, bao dung và nâng đỡ từng bước trưởng thành của con.",
+            "Chúc gia đình mình luôn tràn ngập tiếng cười, Cha Mẹ luôn dồi dào sức khỏe và hạnh phúc bên các con!",
+            "Con cầu chúc Cha Mẹ mỗi ngày trôi qua đều an nhiên, nhiều niềm vui và mãi là mái ấm bình yên nhất của con.",
+            "Tình yêu của Cha Mẹ là món quà tuyệt vời nhất đời con. Kính chúc Cha Mẹ luôn bình an và vui khỏe mỗi ngày!"
         ];
 
         const teacherWishes = [
-            "Tri Ã¢n Tháº§y CÃ´ â€“ Nhá»¯ng ngÆ°á»i Ä‘Æ°a Ä‘Ã² tháº§m láº·ng miá»‡t mÃ i mang Ã¡nh sÃ¡ng tri thá»©c Ä‘áº¿n bao tháº¿ há»‡ há»c trÃ²!",
-            "KÃ­nh chÃºc cÃ¡c Tháº§y CÃ´ giÃ¡o TrÆ°á»ng THCS Phan VÄƒn Trá»‹ luÃ´n dá»“i dÃ o sá»©c khá»e, háº¡nh phÃºc vÃ  giá»¯ trá»n ngá»n lá»­a nhiá»‡t huyáº¿t!",
-            "Cáº£m Æ¡n Tháº§y CÃ´ Ä‘Ã£ khÃ´ng chá»‰ dáº¡y chÃºng em tri thá»©c, mÃ  cÃ²n dáº¡y chÃºng em cÃ¡ch lÃ m ngÆ°á»i tá»­ táº¿ vÃ  biáº¿t yÃªu thÆ°Æ¡ng.",
-            "Ná»‘i bÆ°á»›c tri thá»©c, kÃ­nh chÃºc Tháº§y CÃ´ má»™t mÃ¹a tháº­t nhiá»u niá»m vui, luÃ´n nháº­n Ä‘Æ°á»£c sá»± kÃ­nh trá»ng vÃ  yÃªu máº¿n tá»« há»c sinh!",
-            "Má»—i lá»i giáº£ng cá»§a Tháº§y CÃ´ lÃ  má»™t háº¡t máº§m tri thá»©c. ChÃºc Tháº§y CÃ´ luÃ´n vá»¯ng vÃ ng trÃªn bá»¥c giáº£ng gáº·t hÃ¡i nhiá»u trÃ¡i ngá»t!"
+            "Tri ân Thầy Cô – Những người đưa đò thầm lặng miệt mài mang ánh sáng tri thức đến bao thế hệ học trò!",
+            "Kính chúc các Thầy Cô giáo Trường THCS Phan Văn Trị luôn dồi dào sức khỏe, hạnh phúc và giữ trọn ngọn lửa nhiệt huyết!",
+            "Cảm ơn Thầy Cô đã không chỉ dạy chúng em tri thức, mà còn dạy chúng em cách làm người tử tế và biết yêu thương.",
+            "Nối bước tri thức, kính chúc Thầy Cô một mùa thật nhiều niềm vui, luôn nhận được sự kính trọng và yêu mến từ học sinh!",
+            "Mỗi lời giảng của Thầy Cô là một hạt mầm tri thức. Chúc Thầy Cô luôn vững vàng trên bục giảng gặt hái nhiều trái ngọt!"
         ];
 
-        // KHAI BÃO BIáº¾N Äáº¾M THá»¨ Tá»° CHO MÃY IN
+        // KHAI BÁO BIẾN ĐẾM THỨ TỰ CHO MÁY IN
         let parentIndex = 0;
         let teacherIndex = 0;
         let isTyping = false;
@@ -843,18 +848,17 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
             let selectedText = "";
 
             if (type === 'parents') {
-                header.innerText = "ðŸŒ¸ Lá»œI CHÃšC DÃ€NH Táº¶NG CHA Máº¸";
+                header.innerText = "🌸 LỜI CHÚC DÀNH TẶNG CHA MẸ";
                 selectedText = parentWishes[parentIndex];
-                parentIndex = (parentIndex + 1) % parentWishes.length; // TÄƒng chá»‰ sá»‘ & láº·p láº¡i tá»« Ä‘áº§u
+                parentIndex = (parentIndex + 1) % parentWishes.length;
             } else {
-                header.innerText = "ðŸ‘¨â€ðŸ« TRI Ã‚N THáº¦Y CÃ” 20/11";
+                header.innerText = "👨‍🏫 TRI ÂN THẦY CÔ 20/11";
                 selectedText = teacherWishes[teacherIndex];
-                teacherIndex = (teacherIndex + 1) % teacherWishes.length; // TÄƒng chá»‰ sá»‘ & láº·p láº¡i tá»« Ä‘áº§u
+                teacherIndex = (teacherIndex + 1) % teacherWishes.length;
             }
 
             slot.style.display = 'block';
 
-            // HIá»†U á»¨NG GÃ• CHá»® MÃY IN Táº CH Táº CH CHUáº¨N XÃC KHOáº¢NG TRáº®NG
             body.textContent = "";
             let charIndex = 0;
             isTyping = true;
@@ -871,18 +875,17 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
             }, 30);
         }
 
-        // Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢
+        // BỨC TƯỜNG LƯU BÚT ĐỘC GIẢ
         function loadSignatures() {
             const wall = document.getElementById('guestbookWall');
             const saved = JSON.parse(localStorage.getItem('pvt_signatures') || '[]');
             wall.innerHTML = '';
             
-            if(saved.length === 0) {
-            } else {
+            if(saved.length > 0) {
                 saved.forEach(name => {
                     const tag = document.createElement('span');
                     tag.className = 'guestbook-tag';
-                    tag.innerText = "ðŸª " + name;
+                    tag.innerText = "🐾 " + name;
                     wall.appendChild(tag);
                 });
             }
@@ -905,9 +908,9 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
 
         // MASCOT TALK
         const mascotDialogues = [
-            "ChÃ o má»«ng báº¡n Ä‘áº¿n vá»›i TrÆ°á»ng THCS Phan VÄƒn Trá»‹ - Quáº­n GÃ² Váº¥p! ðŸ«",
-            "ChÃºng em xin kÃ­nh chÃºc cÃ¡c Tháº§y CÃ´ vÃ  báº¡n Ä‘á»c luÃ´n trÃ n ngáº­p niá»m vui! ðŸŽ“âœ¨",
-            "Äá»«ng quÃªn báº¥m vÃ o lÃ¡ thÆ° bay gÃ³c trÃ¡i Ä‘á»ƒ gá»­i gáº¯m lá»i tÃ¢m sá»± cho chÃºng em nheee! ðŸ’Œ"
+            "Chào mừng bạn đến với Trường THCS Phan Văn Trị - TP.HCM! 🏫",
+            "Chúng em xin kính chúc các Thầy Cô và bạn đọc luôn tràn ngập niềm vui! 🎓✨",
+            "Đừng quên bấm vào lá thư bay góc trái để gửi gắm lời tâm sự cho chúng em nheee! 💌"
         ];
         let mascotIndex = 0;
 
@@ -916,11 +919,11 @@ Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào
             document.getElementById('mascotTalk').innerText = mascotDialogues[mascotIndex];
         }
 
-// HIá»†U á»¨NG LÃ CÃ‚Y RÆ I (ÄÃƒ CHá»ˆNH Bá»šT THÆ¯A Láº I)
+        // HIỆU ỨNG LÁ CÂY RƠI
         setInterval(() => {
             const leaf = document.createElement('div');
             leaf.className = 'leaf';
-            leaf.innerHTML = Math.random() > 0.5 ? 'ðŸƒ' : 'ðŸŒ¸';
+            leaf.innerHTML = Math.random() > 0.5 ? '🍃' : '🌸';
             leaf.style.left = Math.random() * 100 + 'vw';
             leaf.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
             document.body.appendChild(leaf);
