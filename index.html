@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> GIỚI THIỆU VỀ TRƯỜNG EM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #eafaf1;
+            --mint: #389771;
+            --mint-dark: #338053ce;
+            --text: #031102;
+            --card: rgba(255, 255, 255, 0.75);
+            --card-glass: rgba(255, 255, 255, 0.45);
+            --accent: #d8f5e3;
+            --btn-hover: #b4f0c3;
+            --nav-border: #287a49;
+            --shadow: rgba(37, 156, 87, 0.15);
+        }
+
+[data-theme="dark"] {
+            --bg: #0d2012;
+            --mint: #52c480;
+            --mint-dark: #2f8551;
+            --text: #e8f7ee;
+            --card: rgba(20, 48, 27, 0.88);
+            --card-glass: rgba(20, 48, 27, 0.65);
+            --accent: #1e4528;
+            --btn-hover: #295e37;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 10px; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Lexend', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+
+        h1, h2, h3, h4, .font-bubbly {
+            font-family: 'Baloo 2', cursive, sans-serif;
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor {
+            width: 32px;
+            height: 32px;
+            background: rgba(82, 196, 128, 0.25);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 999999;
+            border: 2px solid rgba(37, 156, 87, 0.5);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 12px rgba(37, 156, 87, 0.2);
+            transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, transform 0.08s ease-out;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background: rgba(37, 156, 87, 0.35);
+            border-color: var(--mint);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* OVERLAY QUIZ */
+        #quiz-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 30, 15, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 20px;
+        }
+        .quiz-card {
+            background: var(--card);
+            color: var(--text);
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            border: 3px solid var(--mint);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .quiz-title {
+            color: var(--mint);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .quiz-question {
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .quiz-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--accent);
+            color: var(--text);
+            border: 2px solid var(--mint);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14.5px;
+            transition: all 0.2s;
+            font-family: 'Lexend', sans-serif;
+        }
+        .quiz-btn:hover {
+            background: var(--mint);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* SIDEBAR Dá»ŒC BÃŠN TRÃI */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -200px;
+            width: 250px;
+            height: 100vh;
+            background: var(--card);
+            border-right: 3px solid var(--mint);
+            z-index: 1000;
+            transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 5px 0 15px var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .sidebar:hover { left: 0; }
+        .sidebar-toggle-hint {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--mint);
+            color: white;
+            padding: 12px 8px;
+            border-radius: 0 12px 12px 0;
+            font-weight: bold;
+            font-size: 12px;
+            writing-mode: vertical-rl;
+            letter-spacing: 2px;
+            box-shadow: 3px 0 8px var(--shadow);
+        }
+        .logo-container { text-align: center; margin-bottom: 10px; }
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--mint);
+            object-fit: cover;
+        }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 10px; }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 12px;
+            background: var(--accent);
+            border: 1.5px solid var(--mint);
+            transition: all 0.2s;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-link:hover {
+            background: var(--mint);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* MAIN CONTAINER */
+        .main-wrapper {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* HEADER BAR */
+        .top-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            border: 2px solid var(--mint);
+            border-radius: 50px;
+            padding: 8px 12px 8px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            gap: 15px;
+        }
+        .school-title-badge {
+            font-family: 'Baloo 2', cursive, sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            padding: 6px 22px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(37, 156, 87, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .top-btn {
+            background: var(--accent);
+            color: var(--text);
+            border: 2px solid var(--mint);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 13.5px;
+            transition: all 0.2s;
+            font-family: 'Lexend', sans-serif;
+            white-space: nowrap;
+        }
+        .top-btn:hover {
+            background: var(--mint);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* BANNER */
+        .banner-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 3px solid var(--mint);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px var(--shadow);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .banner-slogan-box {
+            display: inline-block;
+            border: 2px solid var(--mint);
+            border-radius: 15px;
+            padding: 10px 22px;
+            background: var(--accent);
+            font-style: italic;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+        }
+
+        /* KHUNG áº¢NH GLASSMORPHISM */
+        .glass-img-wrapper {
+            position: relative;
+            border-radius: 16px;
+            padding: 8px;
+            background: var(--card-glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(37, 156, 87, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 156, 87, 0.12);
+            transition: all 0.35s ease;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .glass-img-wrapper:hover {
+            transform: translateY(-4px) scale(1.005);
+            border-color: var(--mint);
+            box-shadow: 0 12px 30px rgba(37, 156, 87, 0.28);
+        }
+        .glass-img-wrapper img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* SECTIONS & CARDS */
+        .section-title {
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px 15px 0 0;
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        .section-body {
+            background: var(--card);
+            border-radius: 0 0 15px 15px;
+            padding: 22px;
+            box-shadow: 0 4px 15px var(--shadow);
+            margin-bottom: 25px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* 3D FLIP CARDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .flip-card {
+            background-color: transparent;
+            height: 230px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            border: 2px solid var(--mint);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .flip-card-front { background: var(--accent); }
+        .flip-card-back {
+            background: var(--card);
+            transform: rotateY(180deg);
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        /* VIDEO CONTAINER */
+        .video-container {
+            width: 100%;
+            border-radius: 14px;
+            border: 2px solid var(--mint);
+            margin-top: 15px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            display: block;
+        }
+
+        /* MEMBERS GRID */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .member-card {
+            background: var(--accent);
+            border: 2px solid var(--mint);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .member-card:hover { transform: translateY(-5px); }
+        .member-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--mint);
+            object-fit: cover;
+            margin: 0 auto 10px;
+        }
+
+        /* PRINTER ZONE */
+        .printer-zone {
+            background: var(--card);
+            border: 2px dashed var(--mint);
+            border-radius: 15px;
+            padding: 22px;
+            text-align: center;
+        }
+        .printer-options {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .ticket-slot {
+            display: none;
+            background: var(--accent);
+            border: 2px solid var(--mint);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 15px;
+            animation: slideDown 0.4s ease-out;
+        }
+        #ticketBody {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        /* GUESTBOOK WALL */
+        .guestbook-input {
+            display: flex;
+            gap: 10px;
+            max-width: 420px;
+            margin: 0 auto 15px;
+        }
+        .guestbook-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 12px;
+            border: 2px solid var(--mint);
+            background: var(--accent);
+            color: var(--text);
+            outline: none;
+            font-family: 'Lexend', sans-serif;
+            font-size: 14px;
+        }
+        .guestbook-wall {
+            background: var(--accent);
+            min-height: 80px;
+            border-radius: 12px;
+            border: 2px dashed var(--mint);
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .guestbook-tag {
+            background: var(--card);
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--mint);
+            animation: popIn 0.3s ease;
+        }
+
+        /* FOOTER NGUá»’N TÆ¯ LIá»†U */
+        .footer-card {
+            background: var(--card);
+            border: 2px solid var(--mint);
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px var(--shadow);
+            backdrop-filter: blur(8px);
+        }
+
+        /* FLOATING CORNER ELEMENTS */
+        .floating-letter-left {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--card);
+            border: 2.5px solid var(--mint);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            box-shadow: 0 4px 15px var(--shadow);
+            animation: floatLeft 3s ease-in-out infinite;
+            text-decoration: none;
+            color: var(--text);
+        }
+        @keyframes floatLeft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-mascot-right {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .mascot-bubble {
+            background: var(--card);
+            border: 2px solid var(--mint);
+            padding: 8px 12px;
+            border-radius: 15px 15px 0 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            box-shadow: 0 4px 10px var(--shadow);
+            max-width: 180px;
+        }
+        .mascot-img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            animation: floatRight 3s ease-in-out infinite;
+        }
+        @keyframes floatRight {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* FALLING PARTICLES EFFECT */
+        .leaf {
+            position: fixed;
+            top: -50px;
+            font-size: 18px;
+            z-index: 999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            * { cursor: auto !important; }
+            .cursor { display: none !important; }
+            .main-wrapper { padding: 12px; }
+            .sidebar { width: 220px; }
+            .guestbook-input { flex-direction: column; }
+            .top-header-bar { flex-direction: column; gap: 10px; padding: 12px; }
+            .school-title-badge { font-size: 16px; padding: 6px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CON TRá»Ž CHUá»˜T NÄ‚NG Äá»˜NG -->
+    <div class="cursor"></div>
+
+    <!-- OVERLAY QUIZ CÃ‚U Há»ŽI -->
+    <div id="quiz-overlay">
+        <div class="quiz-card">
+            <div class="quiz-title">🏫 CHÀO MỪNG BẠN ĐẾN VỚI THCS PHAN VĂN TRỊ 🏫</div>
+            <div class="quiz-question">Thử thách nho nhỏ trước khi tham quan nha:
+Bạn có biết Trường THCS Phan Văn Trị tọa lạc tại phường nào của TP.HCM không nè?</b></div>
+            <button class="quiz-btn" onclick="answerQuiz(false)">A. Phường Gò Vấp</button>
+            <button class="quiz-btn" onclick="answerQuiz(true)">B. Phường Hạnh Thông</button>
+            <button class="quiz-btn" onclick="answerQuiz(false)">C. Phường Thông Tây Hội</button>
+            <div id="quiz-error" style="color: red; font-size: 13px; margin-top: 10px; font-weight: bold;"></div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR Dá»ŒC BÃŠN TRÃI -->
+    <div class="sidebar">
+        <div class="sidebar-toggle-hint">MENU âž”</div>
+        <div class="logo-container">
+            <img src="logo-truong.jpg" alt="Logo TrÆ°á»ng" class="school-logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
+        </div>
+        <div class="sidebar-nav">
+            <a href="#home" class="nav-link">ðŸ  Trang chá»§</a>
+            <a href="#infor" class="nav-link">ðŸ« Giá»›i thiá»‡u & Khá»‘i</a>
+            <a href="#activities" class="nav-link">ðŸŽ—ï¸ Hoáº¡t Ä‘á»™ng Äá»™i</a>
+            <a href="#member" class="nav-link">ðŸ‘¥ NhÃ³m lÃ m bÃ¡o</a>
+            <a href="#guestbook" class="nav-link">ðŸ¾ Bá»©c tÆ°á»ng lÆ°u bÃºt</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-wrapper" id="home">
+        
+        <!-- THANH HEADER TOP NGANG HÃ€NG -->
+        <div class="top-header-bar">
+            <div class="school-title-badge">
+                <span>ðŸ«</span> TRÆ¯á»œNG THCS PHAN VÄ‚N TRá»Š
+            </div>
+            <button class="top-btn" id="theme-toggle">ðŸŒ“ Mode SÃ¡ng/Tá»‘i</button>
+        </div>
+
+        <!-- BANNER CHÃNH -->
+        <div class="banner-card">
+            <div class="banner-slogan-box">
+                "Tri thá»©c dáº«n lá»‘i â€“ Tá»± tin bá»©t phÃ¡ â€“ Vá»¯ng bÆ°á»›c tÆ°Æ¡ng lai"
+            </div>
+            <div class="glass-img-wrapper">
+                <img src="banner-truong.jpg" alt="Banner TrÆ°á»ng" onerror="this.src='https://via.placeholder.com/800x250?text=BANNER+TRUONG'">
+            </div>
+        </div>
+
+        <!-- Má»¤C 1: GIá»šI THIá»†U TRÆ¯á»œNG & CÆ  Sá»ž Váº¬T CHáº¤T -->
+        <div class="section-title" id="infor">ðŸ›ï¸ GIá»šI THIá»†U TRÆ¯á»œNG & CÆ  Sá»ž Váº¬T CHáº¤T</div>
+        <div class="section-body">
+            <p style="line-height: 1.7; margin-bottom: 15px; font-size: 14.5px;">
+                TrÆ°á»ng THCS Phan VÄƒn Trá»‹ Ä‘Æ°á»£c thÃ nh láº­p theo Quyáº¿t Ä‘á»‹nh sá»‘ 3270/QÄ-UBND ngÃ y 26/05/2016 cá»§a UBND quáº­n GÃ² Váº¥p, tá»a láº¡c táº¡i Ä‘á»‹a chá»‰ <b>468/2/2 Ä‘Æ°á»ng Phan VÄƒn Trá»‹, P.7, Q. GÃ² Váº¥p</b>. TrÆ°á»ng cÃ³ tá»•ng diá»‡n tÃ­ch sÃ n xÃ¢y má»›i trÃªn <b>6.700mÂ²</b>, vá»›i tá»•ng má»©c Ä‘áº§u tÆ° hÆ¡n <b>76 tá»· Ä‘á»“ng</b>, Ä‘á»“ng bá»™ chuáº©n quá»‘c gia.
+            </p>
+
+            <div class="glass-img-wrapper">
+                <img src="anh-gioi-thu-truong.jpg" alt="áº¢nh trÆ°á»ng" onerror="this.src='https://via.placeholder.com/800x220?text=ANH+GIOI+THIEU+TRUONG'">
+            </div>
+
+            <h3 style="font-size: 16px; color: var(--mint-dark); margin-top: 20px; text-align: center;">ðŸ¢ 3 KHá»I CHá»¨C NÄ‚NG CHÃNH (Cháº¡m/RÃª chuá»™t Ä‘á»ƒ xem):</h3>
+            
+            <div class="grid-3">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ›ï¸ KHá»I A</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khá»‘i Há»c Táº­p & Quáº£n Trá»‹</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p style="font-size: 13.5px; line-height: 1.5;">Phá»¥c vá»¥ cÃ´ng tÃ¡c quáº£n trá»‹ nhÃ  trÆ°á»ng, ban giÃ¡m hiá»‡u, vÄƒn phÃ²ng vÃ  cÃ¡c phÃ²ng há»p chá»©c nÄƒng chuyÃªn mÃ´n.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ“š KHá»I B</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Khá»‘i PhÃ²ng Há»c</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p style="font-size: 13.5px; line-height: 1.5;">Bao gá»“m 22 phÃ²ng há»c chuáº©n hÃ³a hiá»‡n Ä‘áº¡i cÃ¹ng Ä‘áº§y Ä‘á»§ cÃ¡c phÃ²ng bá»™ mÃ´n trang thiáº¿t bá»‹ tiÃªn tiáº¿n.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 style="color: var(--mint); font-size: 18px;">ðŸ€ KHá»I C</h4>
+                            <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">Sinh Hoáº¡t & NhÃ  Äa NÄƒng</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p style="font-size: 13.5px; line-height: 1.5;">Phá»¥c vá»¥ khu thá»ƒ dá»¥c thá»ƒ thao Ä‘a nÄƒng káº¿t há»£p há»™i trÆ°á»ng, phÃ²ng truyá»n thá»‘ng & chÄƒm sÃ³c sá»©c khá»e y táº¿.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Má»¤C 2: HOáº T Äá»˜NG Äá»˜I & VIDEO Táº¢I LÃŠN -->
+        <div class="section-title" id="activities">ðŸŽ—ï¸ BÃ€I ÄÄ‚NG HOáº T Äá»˜NG Äá»˜I & PHONG TRÃ€O</div>
+        <div class="section-body">
+            <p style="font-size: 14px; margin-bottom: 10px; text-align: center;">CÃ¹ng nhÃ¬n láº¡i nhá»¯ng khoáº£nh kháº¯c hoáº¡t Ä‘á»™ng sÃ´i ná»•i vÃ  Ä‘áº§y Ã½ nghÄ©a cá»§a LiÃªn Ä‘á»™i TrÆ°á»ng THCS Phan VÄƒn Trá»‹:</p>
+            
+            <div class="video-container">
+                <video controls>
+                    <source src="hoat-dong-doi.mp4" type="video/mp4">
+                    TrÃ¬nh duyá»‡t cá»§a báº¡n khÃ´ng há»— trá»£ tháº» video.
+                </video>
+            </div>
+        </div>
+
+        <!-- Má»¤C 3: NHÃ“M THá»°C HIá»†N BÃO -->
+        <div class="section-title" id="member">ðŸ‘¥ NHÃ“M THá»°C HIá»†N BÃO (4 THÃ€NH VIÃŠN)</div>
+        <div class="section-body">
+            <div class="grid-4">
+                <div class="member-card">
+                    <img src="member1.jpg" class="member-avatar" onerror="this.src='https://via.placeholder.com/90?text=MEM1'">
+                    <h4 style="font-size: 15px;">Thành Viên 1</h4>
+                    <p style="font-size: 12.5px; color: var(--mint-dark); font-weight: 600;"></p>
+                </div>
+                <div class="member-card">
+                    <img src="member2.jpg" class="member-avatar" onerror="this.src='https://via.placeholder.com/90?text=MEM2'">
+                    <h4 style="font-size: 15px;">Thành Viên 2</h4>
+                    <p style="font-size: 12.5px; color: var(--mint-dark); font-weight: 600;"></p>
+                </div>
+                <div class="member-card">
+                    <img src="member3.jpg" class="member-avatar" onerror="this.src='https://via.placeholder.com/90?text=MEM3'">
+                    <h4 style="font-size: 15px;">Thành Viên 3</h4>
+                    <p style="font-size: 12.5px; color: var(--mint-dark); font-weight: 600;"></p>
+                </div>
+                <div class="member-card">
+                    <img src="member4.jpg" class="member-avatar" onerror="this.src='https://via.placeholder.com/90?text=MEM4'">
+                    <h4 style="font-size: 15px;">Thành Viên 4</h4>
+                    <p style="font-size: 12.5px; color: var(--mint-dark); font-weight: 600;"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Má»¤C 5: Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢ -->
+        <div class="section-title" id="guestbook">Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢ Äá»ŒC BÃO</div>
+        <div class="section-body" style="text-align: center;">
+            <p style="font-size: 13.5px; margin-bottom: 12px;">ÄÃ£ quÃ©t mÃ£ QR ghÃ© thÄƒm web, hÃ£y Ä‘á»ƒ láº¡i dáº¥u áº¥n kÃ­ tÃªn cá»§a báº¡n nhÃ©!</p>
+            
+            <div class="guestbook-input">
+                <input type="text" id="visitorName" placeholder="Nháº­p tÃªn cá»§a báº¡n...">
+                <button class="top-btn" onclick="addSignature()">KÃ½ TÃªn âœï¸</button>
+            </div>
+
+            <div id="guestbookWall" class="guestbook-wall"></div>
+        </div>
+
+        <!-- Má»¤C FOOTER CHÃ‚N TRANG ÄÃ“NG KHUNG NGUá»’N TÆ¯ LIá»†U -->
+        <div class="footer-card">
+            <p style="font-weight: 600; color: var(--mint-dark); font-size: 14px;">
+                ðŸ“· Nguá»“n hÃ¬nh áº£nh & ná»™i dung: TÆ° liá»‡u LiÃªn Ä‘á»™i TrÆ°á»ng THCS Phan VÄƒn Trá»‹
+            </p>
+            <p style="font-style: italic; margin-top: 5px; color: var(--text);">
+                "THCS Phan VÄƒn Trá»‹ â€“ Vá»¯ng bÆ°á»›c tri thá»©c, cháº¯p cÃ¡nh Æ°á»›c mÆ¡."
+            </p>
+        </div>
+
+    </div>
+
+    <!-- TÆ¯Æ NG TÃC LÆ  Lá»¬NG GÃ“C DÆ¯á»šI -->
+    <a href="https://forms.gle/5LDYGjLYD2qnmrZV9" target="_blank" class="floating-letter-left" title="Gá»­i thÆ° gÃ³p Ã½ qua Form Google">
+        âœ‰ï¸
+    </a>
+
+    <div class="floating-mascot-right" onclick="clickMascot()">
+        <div class="mascot-bubble" id="mascotTalk">
+            ChÃ o báº¡n! ChÃºng em xin kÃ­nh chÃºc báº¡n má»™t ngÃ y vui váº»! ðŸŽ“âœ¨
+        </div>
+        <img src="mascot-students.png" class="mascot-img" id="mascotImg" onerror="this.src='https://via.placeholder.com/75?text=MASCOT'">
+    </div>
+
+    <script>
+        // Xá»¬ LÃ OVERLAY QUIZ
+        function answerQuiz(isCorrect) {
+            const errorEl = document.getElementById('quiz-error');
+            if (isCorrect) {
+                document.getElementById('quiz-overlay').style.display = 'none';
+            } else {
+                errorEl.innerText = "Æ  kÃ¬a, chÆ°a chÃ­nh xÃ¡c rá»“i báº¡n Æ¡i! Thá»­ láº¡i cÃ¢u tráº£ lá»i Ä‘Ãºng nha ðŸ˜…";
+                setTimeout(() => { errorEl.innerText = ""; }, 2500);
+            }
+        }
+
+        // CHUYá»‚N Äá»”I MODE SÃNG / Tá»I
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        });
+
+        // CUSTOM CURSOR MOVEMENT
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', e => {
+            if (cursor) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        document.querySelectorAll('a, button, input, .flip-card, .glass-img-wrapper, .floating-mascot-right, .floating-letter-left').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovered'));
+        });
+
+        // Lá»œI CHÃšC DÃ€NH CHO CHA Máº¸ VÃ€ THáº¦Y CÃ”
+        const parentWishes = [
+            "CÃ´ng Æ¡n sinh thÃ nh cá»§a Cha, sá»± chÄƒm sÃ³c dá»‹u dÃ ng cá»§a Máº¹ lÃ  suá»‘i nguá»“n yÃªu thÆ°Æ¡ng vÃ´ giÃ¡. ChÃºc Cha Máº¹ luÃ´n máº¡nh khá»e, bÃ¬nh an!",
+            "Cáº£m Æ¡n Cha Máº¹ Ä‘Ã£ luÃ´n lÃ  tá»±a sÆ¡n vá»¯ng cháº¯c, bao dung vÃ  nÃ¢ng Ä‘á»¡ tá»«ng bÆ°á»›c trÆ°á»Ÿng thÃ nh cá»§a con.",
+            "ChÃºc gia Ä‘Ã¬nh mÃ¬nh luÃ´n trÃ n ngáº­p tiáº¿ng cÆ°á»i, Cha Máº¹ luÃ´n dá»“i dÃ o sá»©c khá»e vÃ  háº¡nh phÃºc bÃªn cÃ¡c con!",
+            "Con cáº§u chÃºc Cha Máº¹ má»—i ngÃ y trÃ´i qua Ä‘á»u an nhiÃªn, nhiá»u niá»m vui vÃ  mÃ£i lÃ  mÃ¡i áº¥m bÃ¬nh yÃªn nháº¥t cá»§a con.",
+            "TÃ¬nh yÃªu cá»§a Cha Máº¹ lÃ  mÃ³n quÃ  tuyá»‡t vá»i nháº¥t Ä‘á»i con. KÃ­nh chÃºc Cha Máº¹ luÃ´n bÃ¬nh an vÃ  vui khá»e má»—i ngÃ y!"
+        ];
+
+        const teacherWishes = [
+            "Tri Ã¢n Tháº§y CÃ´ â€“ Nhá»¯ng ngÆ°á»i Ä‘Æ°a Ä‘Ã² tháº§m láº·ng miá»‡t mÃ i mang Ã¡nh sÃ¡ng tri thá»©c Ä‘áº¿n bao tháº¿ há»‡ há»c trÃ²!",
+            "KÃ­nh chÃºc cÃ¡c Tháº§y CÃ´ giÃ¡o TrÆ°á»ng THCS Phan VÄƒn Trá»‹ luÃ´n dá»“i dÃ o sá»©c khá»e, háº¡nh phÃºc vÃ  giá»¯ trá»n ngá»n lá»­a nhiá»‡t huyáº¿t!",
+            "Cáº£m Æ¡n Tháº§y CÃ´ Ä‘Ã£ khÃ´ng chá»‰ dáº¡y chÃºng em tri thá»©c, mÃ  cÃ²n dáº¡y chÃºng em cÃ¡ch lÃ m ngÆ°á»i tá»­ táº¿ vÃ  biáº¿t yÃªu thÆ°Æ¡ng.",
+            "Ná»‘i bÆ°á»›c tri thá»©c, kÃ­nh chÃºc Tháº§y CÃ´ má»™t mÃ¹a tháº­t nhiá»u niá»m vui, luÃ´n nháº­n Ä‘Æ°á»£c sá»± kÃ­nh trá»ng vÃ  yÃªu máº¿n tá»« há»c sinh!",
+            "Má»—i lá»i giáº£ng cá»§a Tháº§y CÃ´ lÃ  má»™t háº¡t máº§m tri thá»©c. ChÃºc Tháº§y CÃ´ luÃ´n vá»¯ng vÃ ng trÃªn bá»¥c giáº£ng gáº·t hÃ¡i nhiá»u trÃ¡i ngá»t!"
+        ];
+
+        // KHAI BÃO BIáº¾N Äáº¾M THá»¨ Tá»° CHO MÃY IN
+        let parentIndex = 0;
+        let teacherIndex = 0;
+        let isTyping = false;
+
+        function printWish(type) {
+            if(isTyping) return;
+            const slot = document.getElementById('ticketSlot');
+            const header = document.getElementById('ticketHeader');
+            const body = document.getElementById('ticketBody');
+
+            let selectedText = "";
+
+            if (type === 'parents') {
+                header.innerText = "ðŸŒ¸ Lá»œI CHÃšC DÃ€NH Táº¶NG CHA Máº¸";
+                selectedText = parentWishes[parentIndex];
+                parentIndex = (parentIndex + 1) % parentWishes.length; // TÄƒng chá»‰ sá»‘ & láº·p láº¡i tá»« Ä‘áº§u
+            } else {
+                header.innerText = "ðŸ‘¨â€ðŸ« TRI Ã‚N THáº¦Y CÃ” 20/11";
+                selectedText = teacherWishes[teacherIndex];
+                teacherIndex = (teacherIndex + 1) % teacherWishes.length; // TÄƒng chá»‰ sá»‘ & láº·p láº¡i tá»« Ä‘áº§u
+            }
+
+            slot.style.display = 'block';
+
+            // HIá»†U á»¨NG GÃ• CHá»® MÃY IN Táº CH Táº CH CHUáº¨N XÃC KHOáº¢NG TRáº®NG
+            body.textContent = "";
+            let charIndex = 0;
+            isTyping = true;
+            let fullText = `"${selectedText}"`;
+
+            let timer = setInterval(() => {
+                if(charIndex < fullText.length) {
+                    body.textContent += fullText[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(timer);
+                    isTyping = false;
+                }
+            }, 30);
+        }
+
+        // Bá»¨C TÆ¯á»œNG LÆ¯U BÃšT Äá»˜C GIáº¢
+        function loadSignatures() {
+            const wall = document.getElementById('guestbookWall');
+            const saved = JSON.parse(localStorage.getItem('pvt_signatures') || '[]');
+            wall.innerHTML = '';
+            
+            if(saved.length === 0) {
+            } else {
+                saved.forEach(name => {
+                    const tag = document.createElement('span');
+                    tag.className = 'guestbook-tag';
+                    tag.innerText = "ðŸª " + name;
+                    wall.appendChild(tag);
+                });
+            }
+        }
+
+        function addSignature() {
+            const input = document.getElementById('visitorName');
+            const name = input.value.trim();
+            if(!name) return;
+
+            const saved = JSON.parse(localStorage.getItem('pvt_signatures') || '[]');
+            saved.push(name);
+            localStorage.setItem('pvt_signatures', JSON.stringify(saved));
+
+            loadSignatures();
+            input.value = '';
+        }
+
+        loadSignatures();
+
+        // MASCOT TALK
+        const mascotDialogues = [
+            "ChÃ o má»«ng báº¡n Ä‘áº¿n vá»›i TrÆ°á»ng THCS Phan VÄƒn Trá»‹ - Quáº­n GÃ² Váº¥p! ðŸ«",
+            "ChÃºng em xin kÃ­nh chÃºc cÃ¡c Tháº§y CÃ´ vÃ  báº¡n Ä‘á»c luÃ´n trÃ n ngáº­p niá»m vui! ðŸŽ“âœ¨",
+            "Äá»«ng quÃªn báº¥m vÃ o lÃ¡ thÆ° bay gÃ³c trÃ¡i Ä‘á»ƒ gá»­i gáº¯m lá»i tÃ¢m sá»± cho chÃºng em nheee! ðŸ’Œ"
+        ];
+        let mascotIndex = 0;
+
+        function clickMascot() {
+            mascotIndex = (mascotIndex + 1) % mascotDialogues.length;
+            document.getElementById('mascotTalk').innerText = mascotDialogues[mascotIndex];
+        }
+
+// HIá»†U á»¨NG LÃ CÃ‚Y RÆ I (ÄÃƒ CHá»ˆNH Bá»šT THÆ¯A Láº I)
+        setInterval(() => {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.innerHTML = Math.random() > 0.5 ? 'ðŸƒ' : 'ðŸŒ¸';
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+            document.body.appendChild(leaf);
+            setTimeout(() => leaf.remove(), 7000);
+        }, 1800);
+    </script>
+</body>
+</html>
